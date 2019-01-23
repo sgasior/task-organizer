@@ -5,9 +5,11 @@ import lombok.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Data
+@RequiredArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = {"id"}, callSuper = false)
 public class Task extends Auditable {
@@ -16,11 +18,15 @@ public class Task extends Auditable {
     @GeneratedValue
     private Long id;
 
+    @NonNull
+    @NotEmpty(message = "Please enter a title.")
     private String title;
 
+    @NonNull
     private String description;
 
-    private boolean active;
+    @NonNull
+    private Boolean active;
 
 
 }
