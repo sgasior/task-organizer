@@ -7,11 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-@RequiredArgsConstructor
-@Getter
-@Setter
-@ToString
-@EqualsAndHashCode(of = "id", callSuper = false)
+@Data
+@NoArgsConstructor
+@EqualsAndHashCode(of = {"id"}, callSuper = false)
 public class Task extends Auditable {
 
     @Id
