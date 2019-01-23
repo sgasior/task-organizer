@@ -11,7 +11,6 @@ import javax.persistence.Id;
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor
 @EqualsAndHashCode(of = "id", callSuper = false)
 public class Task extends Auditable {
 
