@@ -2,9 +2,7 @@ package pl.edu.kopalniakodu.todoapp.domain;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
@@ -25,8 +23,23 @@ public class Task extends Auditable {
     @NonNull
     private String description;
 
+
     @NonNull
     private Boolean active;
 
+    @NonNull
+    @Enumerated(EnumType.STRING)
+    private TaskWeight taskWeight;
+
 
 }
+
+
+
+
+
+
+
+
+
+
