@@ -1,0 +1,24 @@
+.box{
+    width: 300px;
+    height: 300px;
+    border: solid 1px;
+    margin: 10px;
+}
+
+.important{
+    background-color: #b21f2d;
+}
+
+.md-important{
+    background-color: #c69500;
+}
+
+.not-important{
+    background-color: #34ce57;
+}
+
+#title{
+    margin: 0 auto;
+    width: 70%;
+}
+
