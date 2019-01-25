@@ -3,8 +3,6 @@ body {
     color: white;
 }
 
-
-
 /*Font awesome*/
 
 .fa-lightbulb {
@@ -14,7 +12,7 @@ body {
 
 .fa-thumbtack {
     position: relative;
-    bottom: 25px;
+    bottom: 20px;
     left: 250px;
     font-size: 2.5rem;
     transform: rotate(25deg)
@@ -33,7 +31,6 @@ body {
 
 }
 
-
 /*Buttons*/
 
 .btn-done {
@@ -45,10 +42,9 @@ body {
 
 }
 
-
 .btn-update {
     background-color: #efe784;
-    margin-top: 20px;
+    margin-top: 15px;
     padding: 10px 0px;
     width: 45%;
     color: #5c4d4d;
@@ -64,7 +60,6 @@ body {
     margin-left: 22px
 }
 
-
 .btn-done:hover {
     opacity: 0.8;
 
@@ -73,7 +68,6 @@ body {
 .btn:hover {
     opacity: 0.8;
 }
-
 
 /*SECTIONS*/
 
@@ -104,8 +98,6 @@ body {
     left: 10%;
 }
 
-
-
 /*features section*/
 
 #features {
@@ -117,13 +109,12 @@ body {
     margin: auto;
 }
 
-
 .box {
     /*
     width: 150px;
     height: 150px;
 */
-    height:500px;
+    height: 500px;
     margin: 40px;
     display: inline-block;
     background-color: #915b4a;
@@ -133,15 +124,12 @@ body {
     box-shadow: 17px -8px 26px -1px rgba(92, 77, 77, 1);
 }
 
-
-
-
 .topic {
     font-size: 1.2rem;
     text-align: center;
     padding-top: 10px;
     font-weight: 700;
-    height:18%;
+    height: 18%;
 }
 
 .hr-topic {
@@ -152,7 +140,7 @@ body {
 }
 
 .hr-box {
-/*TODO*/
+    /*TODO*/
 }
 
 .description {
@@ -162,9 +150,9 @@ body {
     height: 30%;
 }
 
-.buttons-note{
+.buttons-note {
 
-height: 300px;
+    height: 300px;
 }
 
 /*footer section*/
@@ -204,7 +192,26 @@ height: 300px;
     opacity: 0.7;
 }
 
+/*FILE HISTORY*/
 
+.cross {
+    width: 15%;
+    position: relative;
+    bottom: 20px;
+    left: 260px;
+}
+
+.box-history {
+
+    height: 380px;
+    margin: 40px;
+    display: inline-block;
+    background-color: #915b4a;
+    padding-bottom: 20px;
+    -webkit-box-shadow: 17px -8px 26px -1px rgba(92, 77, 77, 1);
+    -moz-box-shadow: 17px -8px 26px -1px rgba(92, 77, 77, 1);
+    box-shadow: 17px -8px 26px -1px rgba(92, 77, 77, 1);
+}
 
 /*MEDIA*/
 
@@ -213,6 +220,7 @@ height: 300px;
     .box {
         height: 650px;
     }
+
     .btn-update {
         width: 100%;
     }
@@ -226,6 +234,15 @@ height: 300px;
         width: 100px;
     }
 
+    .cross{
+        bottom: 15px;
+        left: 210px;
+    }
+
+    .fa-thumbtack {
+        bottom: 300%;
+        left: 200px;
+    }
 
 }
 
@@ -244,12 +261,30 @@ height: 300px;
         position: relative;
         left: 9%;
     }
+
+
+    .cross{
+        bottom: 15px;
+        left: 90%;
+    }
 }
 
 
-@media (max-width: 550px) {
-    .logo {
-        display: none;
+
+
+@media (max-width: 767px) {
+    .fa-thumbtack {
+        bottom: 25%;
+        left: 500px;
+    }
+
+}
+
+
+@media (max-width: 575px) {
+    .fa-thumbtack {
+        bottom: 50%;
+        left: 90%;
     }
 
 }

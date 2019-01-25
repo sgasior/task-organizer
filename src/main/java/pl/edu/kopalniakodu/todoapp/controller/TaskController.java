@@ -21,12 +21,19 @@ public class TaskController {
     }
 
 
-    @GetMapping("/")
+    @GetMapping({"/","index.html","index"})
     public String taskList(Model model) {
-        logger.info(taskRepository.findAll().toString());
-        model.addAttribute("tasks", taskRepository.findAll());
+        model.addAttribute("tasks", taskRepository.findByActiveTrue());
         return "index";
     }
+
+
+    @GetMapping("/history")
+    public String taskHistory(Model model) {
+        model.addAttribute("tasks", taskRepository.findByActiveFalse());
+        return "history";
+    }
+
 
 
 }

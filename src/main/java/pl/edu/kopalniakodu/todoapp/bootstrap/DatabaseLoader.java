@@ -30,7 +30,7 @@ public class DatabaseLoader implements CommandLineRunner {
 
         taskList.add(new Task("Ruby programming to jest to", "Learn jUnit5, spring, hibernate Learn jUnit5, spring, hibernate" +
                 "Learn jUnit5, spring, hibernate" +
-                "Learn jUnit5, spring, hibernate hibernate hibernate", true, TaskWeight.IMPORTANT));
+                "Learn jUnit5, spring, hibernate hibernate hibernate", false, TaskWeight.IMPORTANT));
         taskList.add(new Task("Exam", "Learn for exam which u have next Friday", true, TaskWeight.MD_IMPORANT));
         taskList.add(new Task("Shopping list", "Buy water, bread, ham", true, TaskWeight.NOT_IMPORTANT));
         taskList.add(new Task("Ruby programming", "Learn ruby on rails!", true, TaskWeight.IMPORTANT));

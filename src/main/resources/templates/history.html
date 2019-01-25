@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layouts/main_layout :: head(title = 'Springit - Spring Boot Reddit Clone')}">
+</head>
+<body>
+
+<nav th:replace="~{layouts/main_layout :: title-section}"></nav>
+
+<div class="new-content">
+
+    <section id="features">
+
+
+        <div class="container">
+            <div class="row justify-content-center">
+
+                <th:block th:each="task: ${tasks}">
+
+                    <div class="col-lg-3 col-md-4 col-sm-12 box-history">
+
+
+                        <img class="cross" th:src="@{/images/iconfinder_f-cross_256_282471.png}">
+
+                        <div class="topic">
+                            <i class="far fa-lightbulb"></i>
+                            <th:block th:utext="${task.title}"></th:block>
+                        </div>
+                        <hr class="hr-topic">
+                        <div class="description">
+                            <th:block th:utext="${task.description}"></th:block>
+                        </div>
+                    </div>
+                </th:block>
+            </div>
+
+        </div>
+
+    </section>
+
+
+</div>
+
+
+<div th:replace="~{layouts/main_layout :: footer}"></div>
+</body>
+</html>

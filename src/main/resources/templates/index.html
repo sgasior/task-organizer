@@ -10,12 +10,22 @@
 
     <section id="features">
 
+
         <div class="container">
             <div class="row justify-content-center">
 
                 <th:block th:each="task: ${tasks}">
-                    <div class="col-lg-3 col-md-4 col-sm-12 box important ">
+
+                    <div class="col-lg-3 col-md-4 col-sm-12 box">
+
+                        <!--<th:block th:if="${task.taskWeight == task.taskWeight.IMPORTANT}">-->
+
                         <i class="fas fa-thumbtack"></i>
+
+
+                        <!--<td th:style="${task.taskWeight == task.taskWeight.IMPORTANT ? 'color: yellow;' : 'color: blue;'}"-->
+                            <!--th:text="${task.taskWeight}"></td>-->
+
                         <div class="topic">
                             <i class="far fa-lightbulb"></i>
                             <th:block th:utext="${task.title}"></th:block>
@@ -26,15 +36,15 @@
                         </div>
                         <hr class="hr-box">
                         <div class="buttons-note">
-                        <button type="button" class="btn btn-lg btn-done">
-                            <i class="far fa-check-square"></i> Done
-                        </button>
-                        <button type="button" class="btn btn-lg btn-update">
-                            <i class="far fa-edit"></i> Update
-                        </button>
-                        <button type="button" class="btn btn-lg btn-delete">
-                            <i class="far fa-trash-alt"></i> Delete
-                        </button>
+                            <button type="button" class="btn btn-lg btn-done">
+                                <i class="far fa-check-square"></i> Done
+                            </button>
+                            <button type="button" class="btn btn-lg btn-update">
+                                <i class="far fa-edit"></i> Update
+                            </button>
+                            <button type="button" class="btn btn-lg btn-delete">
+                                <i class="far fa-trash-alt"></i> Delete
+                            </button>
                         </div>
                     </div>
                 </th:block>
@@ -43,6 +53,7 @@
         </div>
 
     </section>
+
 
 </div>
 
