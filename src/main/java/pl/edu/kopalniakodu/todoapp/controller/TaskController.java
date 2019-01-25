@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import pl.edu.kopalniakodu.todoapp.domain.Task;
 import pl.edu.kopalniakodu.todoapp.repository.TaskRepository;
 
 @Controller
@@ -21,7 +24,7 @@ public class TaskController {
     }
 
 
-    @GetMapping({"/","index.html","index"})
+    @GetMapping({"/", "index.html", "index"})
     public String taskList(Model model) {
         model.addAttribute("tasks", taskRepository.findByActiveTrue());
         return "index";
@@ -35,5 +38,19 @@ public class TaskController {
     }
 
 
+    @PostMapping("/done")
+    public String doneTask(@RequestParam("taskId") Long id) {
+        Task task = taskRepository.findById(id).get();
+        task.setActive(false);
+        taskRepository.save(task);
+        return "redirect:/";
+    }
 
+
+    @PostMapping("/delete")
+    public String deleteTask(@RequestParam("taskId") Long id) {
+        Task task = taskRepository.findById(id).get();
+        taskRepository.delete(task);
+        return "redirect:/";
+    }
 }

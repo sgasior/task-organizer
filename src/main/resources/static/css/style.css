@@ -3,6 +3,10 @@ body {
     color: white;
 }
 
+.form-button {
+    width: 100%;
+}
+
 /*Font awesome*/
 
 .fa-lightbulb {
@@ -46,7 +50,7 @@ body {
     background-color: #efe784;
     margin-top: 15px;
     padding: 10px 0px;
-    width: 45%;
+    width: 44%;
     color: #5c4d4d;
 
 }
@@ -55,7 +59,7 @@ body {
     background-color: #cd4545;
     margin-top: 20px;
     padding: 10px 0px;
-    width: 45%;
+    width: 44%;
     color: #5c4d4d;
     margin-left: 22px
 }
@@ -234,7 +238,7 @@ body {
         width: 100px;
     }
 
-    .cross{
+    .cross {
         bottom: 15px;
         left: 210px;
     }
@@ -262,15 +266,11 @@ body {
         left: 9%;
     }
 
-
-    .cross{
+    .cross {
         bottom: 15px;
         left: 90%;
     }
 }
-
-
-
 
 @media (max-width: 767px) {
     .fa-thumbtack {
@@ -279,7 +279,6 @@ body {
     }
 
 }
-
 
 @media (max-width: 575px) {
     .fa-thumbtack {

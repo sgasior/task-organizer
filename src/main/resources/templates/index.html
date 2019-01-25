@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{layouts/main_layout :: head(title = 'Springit - Spring Boot Reddit Clone')}">
+<head th:replace="~{layouts/main_layout :: head(title = 'todo-app')}">
 </head>
 <body>
 
@@ -24,7 +24,7 @@
 
 
                         <!--<td th:style="${task.taskWeight == task.taskWeight.IMPORTANT ? 'color: yellow;' : 'color: blue;'}"-->
-                            <!--th:text="${task.taskWeight}"></td>-->
+                        <!--th:text="${task.taskWeight}"></td>-->
 
                         <div class="topic">
                             <i class="far fa-lightbulb"></i>
@@ -36,15 +36,41 @@
                         </div>
                         <hr class="hr-box">
                         <div class="buttons-note">
-                            <button type="button" class="btn btn-lg btn-done">
-                                <i class="far fa-check-square"></i> Done
-                            </button>
-                            <button type="button" class="btn btn-lg btn-update">
-                                <i class="far fa-edit"></i> Update
-                            </button>
-                            <button type="button" class="btn btn-lg btn-delete">
-                                <i class="far fa-trash-alt"></i> Delete
-                            </button>
+
+                            <!--<form id="doneTask" method="post" th:action="@{/doneTask}" th:object="${task}">-->
+                            <!--<button type="submit" class="btn btn-lg btn-done">-->
+                            <!--<i class="far fa-check-square"></i> Done-->
+                            <!--</button>-->
+                            <!--</form>-->
+
+                            <form method="POST" th:action="@{/done(taskId=${task.id})}">
+                                <button type="submit" name="submit" value="value" class="btn btn-lg btn-done">
+                                    <i class="far fa-check-square"> Done</i>
+                                </button>
+                            </form>
+
+                            <form style="display:inline" method="POST" th:action="@{/update(taskId=${task.id})}">
+                                <button type="submit" name="submit" value="value" class="btn btn-lg btn-update">
+                                    <i class="far fa-edit"> Update</i>
+                                </button>
+                            </form>
+
+                            <form style="display:inline" method="POST" th:action="@{/delete(taskId=${task.id})}">
+                                <button type="submit" name="submit" value="value" class="btn btn-lg btn-delete">
+                                    <i class="far fa-trash-alt"> Delete</i>
+                                </button>
+                            </form>
+
+                            <!--<form method="POST" th:action="@{/update(taskId=${task.id})}">-->
+                            <!--<button type="button" class="btn btn-lg btn-update">-->
+                            <!--<i class="far fa-edit"></i> Update-->
+                            <!--</button>-->
+                            <!--</form>-->
+                            <!--<button type="button" class="btn btn-lg btn-delete">-->
+                            <!--<i class="far fa-trash-alt"></i> Delete-->
+                            <!--</button>-->
+
+
                         </div>
                     </div>
                 </th:block>
