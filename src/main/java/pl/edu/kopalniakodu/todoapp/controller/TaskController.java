@@ -23,8 +23,9 @@ public class TaskController {
 
     @GetMapping("/")
     public String taskList(Model model) {
+        logger.info(taskRepository.findAll().toString());
         model.addAttribute("tasks", taskRepository.findAll());
-        return "test";
+        return "index";
     }
 
 
