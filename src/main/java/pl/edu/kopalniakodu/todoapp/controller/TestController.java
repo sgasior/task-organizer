@@ -9,7 +9,7 @@ public class TestController {
 
     @RequestMapping("/")
     public String testingView() {
-        return "index";
+        return "test";
     }
 
 }
