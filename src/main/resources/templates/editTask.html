@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layouts/main_layout :: head(title = 'Edit task')}">
+</head>
+<body>
+
+<nav th:replace="~{layouts/main_layout :: title-section}"></nav>
+
+<div class="new-content">
+    <section id="features">
+
+
+        <div class="container">
+
+            <form id="frmAddTask" method="post" th:action="@{/add}" th:object="${task}">
+
+                <div class="errors-creating-task">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div th:errors="*{title}" class="alert alert-dark" role="alert"></div>
+                            <div th:errors="*{description}" class="alert alert-dark" role="alert"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+
+                    <div class="col-md-6 adding-form">
+                        <h3><strong>Edit your task</strong></h3>
+                        <div class="form-group">
+                            <label><i class="fas fa-pen"></i> Title</label>
+                            <input type="text"
+                                   class="form-control"
+                                   placeholder="Enter title"
+                                   required="required"
+                                   id="taskTitle"
+                                   th:field="${task.title}">
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <label><i class="fas fa-align-justify"></i> Description</label>
+                            <textarea class="form-control"
+                                      rows="3"
+                                      placeholder="Enter description"
+                                      required="required"
+                                      th:field="*{description}">
+                            </textarea>
+
+                        </div>
+
+
+                        <div class="col-auto">
+                            <label><i class="fas fa-weight-hanging"></i> Task Weight</label>
+                            <select th:field="*{taskWeight}" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                                <option value="IMPORTANT">Task is important</option>
+                                <option value="MD_IMPORANT">Task is medium important</option>
+                                <option value="NOT_IMPORTANT">Task is not important</option>
+                            </select>
+                        </div>
+
+                        <hr class="hr-add-task">
+                        <button type="submit" class="btn btn-lg btn-done">
+                            <i class="far fa-check-square"></i> Update
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+
+<div th:replace="~{layouts/main_layout :: footer}"></div>
+
+</body>
+</html>
