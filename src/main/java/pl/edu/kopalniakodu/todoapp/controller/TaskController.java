@@ -75,7 +75,7 @@ public class TaskController {
             return "addTask";
         } else if (task.getId() != null) {
             // updateTaskQuery
-            taskRepository.updateTask(task.getTitle(), task.getId());
+            taskRepository.updateTask(task.getTitle(), task.getDescription(), task.getTaskWeight(), task.getId());
             return "redirect:/";
         } else {
 

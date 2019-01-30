@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import pl.edu.kopalniakodu.todoapp.domain.Task;
+import pl.edu.kopalniakodu.todoapp.domain.TaskWeight;
 
 import java.util.List;
 
@@ -21,7 +22,10 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
     //@Query("update Task t set t.title = ?1, t.description= ?2 where t.id = ?3")
     @Modifying
     @Transactional
-    @Query("update Task t set t.title=:newTitle WHERE t.id= :id")
-    int updateTask(@Param("newTitle") String newTitle, @Param("id") Long id);
+    @Query("update Task t set t.title=:newTitle, t.description=:newDescription, t.taskWeight=:newTaskWeight WHERE t.id= :id")
+    int updateTask(@Param("newTitle") String newTitle,
+                   @Param("newDescription") String newDescription,
+                   @Param("newTaskWeight") TaskWeight newTaskWeight,
+                   @Param("id") Long id);
 
 }
