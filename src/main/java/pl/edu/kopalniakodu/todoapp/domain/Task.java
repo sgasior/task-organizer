@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
 public class Task extends Auditable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NonNull
@@ -31,6 +31,11 @@ public class Task extends Auditable {
     @NonNull
     @Enumerated(EnumType.STRING)
     private TaskWeight taskWeight;
+
+    @ManyToOne(
+            cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}
+    )
+    private Schedule schedule;
 
 
 }

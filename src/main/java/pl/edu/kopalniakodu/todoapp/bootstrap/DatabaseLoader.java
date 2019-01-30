@@ -3,26 +3,33 @@ package pl.edu.kopalniakodu.todoapp.bootstrap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import pl.edu.kopalniakodu.todoapp.domain.Schedule;
 import pl.edu.kopalniakodu.todoapp.domain.Task;
-//import pl.edu.kopalniakodu.todoapp.domain.TaskWeight;
 import pl.edu.kopalniakodu.todoapp.domain.TaskWeight;
+import pl.edu.kopalniakodu.todoapp.repository.ScheduleRepository;
 import pl.edu.kopalniakodu.todoapp.repository.TaskRepository;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+
+//import pl.edu.kopalniakodu.todoapp.domain.TaskWeight;
 
 @Component
 public class DatabaseLoader implements CommandLineRunner {
 
 
     private TaskRepository taskRepository;
+    private ScheduleRepository scheduleRepository;
 
     @Autowired
-    public DatabaseLoader(TaskRepository taskRepository) {
+    public DatabaseLoader(TaskRepository taskRepository, ScheduleRepository scheduleRepository) {
         this.taskRepository = taskRepository;
+        this.scheduleRepository = scheduleRepository;
     }
 
     @Override
+    @Transactional
     public void run(String... args) {
 
         System.out.println("In run method");
@@ -41,8 +48,14 @@ public class DatabaseLoader implements CommandLineRunner {
         taskList.add(new Task("Dentist", "Don't forget about dentist next monday", true, TaskWeight.NOT_IMPORTANT));
 
 
+        Schedule schedule = new Schedule();
+        scheduleRepository.save(schedule);
         for (Task task : taskList) {
+            task.setSchedule(schedule);
             taskRepository.save(task);
         }
+
+
+
     }
 }
