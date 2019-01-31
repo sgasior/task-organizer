@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.edu.kopalniakodu.todoapp.domain.Task;
 import pl.edu.kopalniakodu.todoapp.repository.ScheduleRepository;
 import pl.edu.kopalniakodu.todoapp.repository.TaskRepository;
+import pl.edu.kopalniakodu.todoapp.service.TaskService;
 
 import javax.validation.Valid;
 
@@ -25,11 +26,13 @@ public class TaskController {
 
     private TaskRepository taskRepository;
     private ScheduleRepository scheduleRepository;
+    private TaskService taskService;
 
     @Autowired
-    public TaskController(TaskRepository taskRepository, ScheduleRepository scheduleRepository) {
+    public TaskController(TaskRepository taskRepository, ScheduleRepository scheduleRepository, TaskService taskService) {
         this.taskRepository = taskRepository;
         this.scheduleRepository = scheduleRepository;
+        this.taskService = taskService;
     }
 
 
@@ -40,8 +43,7 @@ public class TaskController {
             "{plan}index", ""
     })
     public String taskList(@RequestParam(value = "plan") String plan, Model model) {
-        //model.addAttribute("tasks", taskRepository.findByActiveTrue());
-        model.addAttribute("tasks", taskRepository.findAllTasksSortedByActiveAndTaskWeightAndCreationDate(plan));
+        model.addAttribute("tasks", taskService.findTasks(plan));
         model.addAttribute("plan", plan);
         return "index";
     }
@@ -49,7 +51,7 @@ public class TaskController {
     // example url http://localhost:8080/history/?plan=abc
     @GetMapping("history{plan}")
     public String taskHistory(@RequestParam(value = "plan") String plan, Model model) {
-        model.addAttribute("tasks", taskRepository.findByActiveFalseOrderByLastModifiedDate(plan));
+        model.addAttribute("tasks", taskService.findHistory(plan));
         model.addAttribute("plan", plan);
         return "history";
     }
@@ -57,9 +59,7 @@ public class TaskController {
 
     @PostMapping("/done")
     public String doneTask(@RequestParam("taskId") Long id, @RequestParam("plan") String plan, RedirectAttributes redirectAttributes) {
-        Task task = taskRepository.findById(id).get();
-        task.setActive(false);
-        taskRepository.save(task);
+        taskService.doneById(id);
         redirectAttributes.addAttribute("plan", plan);
         return "redirect:/?plan={plan}";
     }
@@ -67,14 +67,13 @@ public class TaskController {
 
     @PostMapping("/delete")
     public String deleteTask(@RequestParam("taskId") Long id, @RequestParam("plan") String plan, RedirectAttributes redirectAttributes) {
-        taskRepository.deleteById(id);
+        taskService.deleteById(id);
         redirectAttributes.addAttribute("plan", plan);
         return "redirect:/?plan={plan}";
     }
 
     @GetMapping("/add")
     public String newTaskForm(Model model, @RequestParam("plan") String plan) {
-        System.out.println("plan in newTaskForm " + plan);
         model.addAttribute("task", new Task());
         model.addAttribute("plan", plan);
         return "addTask";
@@ -88,21 +87,12 @@ public class TaskController {
             return "addTask";
         } else if (task.getId() != null) {
             // updateTaskQuery
-            taskRepository.updateTask(task.getTitle(), task.getDescription(), task.getTaskWeight(), task.getId());
-            logger.info("plan is " + plan);
+            taskService.updateTask(task.getTitle(), task.getDescription(), task.getTaskWeight(), task.getId());
             redirectAttributes.addAttribute("plan", plan);
             return "redirect:/?plan={plan}";
         } else {
 
-            // set task to be active because only activated tasks are visible on main page.
-            task.setActive(true);
-
-            // find schedule by plan
-            task.setSchedule(scheduleRepository.findScheduleByPlan(plan));
-
-            // saving to the db
-            taskRepository.save(task);
-            logger.info("plan is " + plan);
+            taskService.createTask(task, plan);
             redirectAttributes.addAttribute("plan", plan);
             return "redirect:/?plan={plan}";
         }

@@ -26,10 +26,9 @@ public class Schedule extends Auditable {
 
 
     public Schedule() {
-        // this.urlParam = RandomURLGeneratorImpl.generateRandomUrl();
+        //this.plan = RandomURLGeneratorImpl.generateRandomUrl();
 
         //for dev purpose
-        //this.urlParam = "abc";
         this.plan = "abc";
     }
 }
