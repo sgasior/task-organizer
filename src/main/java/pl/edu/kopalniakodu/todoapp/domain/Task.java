@@ -6,7 +6,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 @Entity
-@Data
+@Getter
+@Setter
 @RequiredArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = {"id"}, callSuper = false)
@@ -32,9 +33,8 @@ public class Task extends Auditable {
     @Enumerated(EnumType.STRING)
     private TaskWeight taskWeight;
 
-    @ManyToOne(
-            cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}
-    )
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "schedule_id")
     private Schedule schedule;
 
 

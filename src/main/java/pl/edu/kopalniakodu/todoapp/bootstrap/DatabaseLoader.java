@@ -55,7 +55,11 @@ public class DatabaseLoader implements CommandLineRunner {
             taskRepository.save(task);
         }
 
-
+        Schedule schedule1 = new Schedule();
+        schedule1.setPlan("aaa");
+        Task task10 = new Task("testujemy", "Don't forget about dentist next monday", true, TaskWeight.NOT_IMPORTANT);
+        task10.setSchedule(schedule1);
+        taskRepository.save(task10);
 
     }
 }

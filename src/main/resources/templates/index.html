@@ -37,25 +37,28 @@
                         <hr class="hr-box">
                         <div class="buttons-note">
 
-                            <!--<form id="doneTask" method="post" th:action="@{/doneTask}" th:object="${task}">-->
-                            <!--<button type="submit" class="btn btn-lg btn-done">-->
-                            <!--<i class="far fa-check-square"></i> Done-->
-                            <!--</button>-->
-                            <!--</form>-->
-
-                            <form method="POST" th:action="@{/done(taskId=${task.id})}">
+                            <form method="POST" th:action="@{/done(plan=${plan},taskId=${task.id})}">
                                 <button type="submit" name="submit" value="value" class="btn btn-lg btn-done">
                                     <i class="far fa-check-square"> Done</i>
                                 </button>
                             </form>
 
-                            <form style="display:inline" method="POST" th:action="@{/update(taskId=${task.id})}">
+                            <!--<form method="POST" th:action="@{/done(taskId=${task.id})}">-->
+                            <!--<button type="submit" name="submit" value="value" class="btn btn-lg btn-done">-->
+                            <!--<i class="far fa-check-square"> Done</i>-->
+                            <!--</button>-->
+                            <!--</form>-->
+
+
+                            <form style="display:inline" method="POST"
+                                  th:action="@{/update(plan=${plan},taskId=${task.id})}">
                                 <button type="submit" name="submit" value="value" class="btn btn-lg btn-update">
                                     <i class="far fa-edit"> Update</i>
                                 </button>
                             </form>
 
-                            <form style="display:inline" method="POST" th:action="@{/delete(taskId=${task.id})}">
+                            <form style="display:inline" method="POST"
+                                  th:action="@{/delete(plan=${plan},taskId=${task.id})}">
                                 <button type="submit" name="submit" value="value" class="btn btn-lg btn-delete">
                                     <i class="far fa-trash-alt"> Delete</i>
                                 </button>

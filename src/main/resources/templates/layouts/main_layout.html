@@ -8,7 +8,6 @@
     <title th:text="${title}">Title goes here</title>
 
     <!--HREFS USING TH-->
-
     <link rel="stylesheet" th:href="@{/libs/bootstrap/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 
@@ -40,16 +39,17 @@
 
 
     <nav class="navbar navbar-dark navbar-expand-md">
-        <a class="navbar-brand" th:href="@{/}">TODO -APP</a>
-
+        <a class="navbar-brand" th:href="@{/(plan=${plan})}">TODO -APP</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item"><a th:href="@{/add}" class="nav-link">Add Task</a></li>
-                <li class="nav-item"><a th:href="@{/history}" class="nav-link">Task History</a></li>
+
+
+                <li class="nav-item"><a th:href="@{/add(plan=${plan})}" class="nav-link">Add Task</a></li>
+                <li class="nav-item"><a th:href="@{/history(plan=${plan})}" class="nav-link">Task History</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Export Tasks</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Import Tasks</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">About App</a></li>
@@ -78,7 +78,7 @@
 </section>
 <section id="new-content" th:fragment="new-content">
 
-<p> This is main content</p>
+    <p> This is main content</p>
 
 </section>
 

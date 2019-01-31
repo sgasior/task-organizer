@@ -13,10 +13,17 @@ import java.util.List;
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
 
-    List<Task> findByActiveFalseOrderByLastModifiedDate();
+    @Modifying
+    @Transactional
+    @Query("DELETE FROM Task t WHERE t.id=:id")
+    void deleteById(@Param("id") Long id);
 
-    @Query("SELECT t FROM Task t WHERE t.active=true ORDER BY t.taskWeight ,t.creationDate ASC ")
-    List<Task> findAllTasksSortedByActiveAndTaskWeightAndCreationDate();
+    @Query("SELECT t FROM Task t WHERE t.active=false and t.schedule.plan=:plan ORDER BY t.lastModifiedDate ")
+    List<Task> findByActiveFalseOrderByLastModifiedDate(@Param("plan") String plan);
+
+
+    @Query("SELECT t FROM Task t WHERE t.active=true AND t.schedule.plan=:plan ORDER BY t.taskWeight ,t.creationDate ASC ")
+    List<Task> findAllTasksSortedByActiveAndTaskWeightAndCreationDate(@Param("plan") String plan);
 
 
     //@Query("update Task t set t.title = ?1, t.description= ?2 where t.id = ?3")

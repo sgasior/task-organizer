@@ -12,7 +12,7 @@
 
         <div class="container">
 
-            <form id="frmAddTask" method="post" th:action="@{/add}" th:object="${task}">
+            <form id="frmAddTask" method="post" th:action="@{/add(plan=${plan})}" th:object="${task}">
 
                 <div class="errors-creating-task">
                     <div class="row justify-content-center">
