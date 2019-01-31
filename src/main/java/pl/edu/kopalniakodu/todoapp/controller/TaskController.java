@@ -24,14 +24,10 @@ public class TaskController {
 
     private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
 
-    private TaskRepository taskRepository;
-    private ScheduleRepository scheduleRepository;
     private TaskService taskService;
 
     @Autowired
     public TaskController(TaskRepository taskRepository, ScheduleRepository scheduleRepository, TaskService taskService) {
-        this.taskRepository = taskRepository;
-        this.scheduleRepository = scheduleRepository;
         this.taskService = taskService;
     }
 
@@ -79,6 +75,7 @@ public class TaskController {
         return "addTask";
     }
 
+
     @PostMapping("/add")
     public String processCreateTask(@RequestParam("plan") String plan, @Valid Task task, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
@@ -102,7 +99,7 @@ public class TaskController {
 
     @PostMapping("/update")
     public String editTaskForm(@RequestParam("taskId") Long id, Model model, @RequestParam("plan") String plan) {
-        Task task = taskRepository.findById(id).get();
+        Task task = taskService.findById(id);
         model.addAttribute("task", task);
         model.addAttribute("plan", plan);
         return "editTask";

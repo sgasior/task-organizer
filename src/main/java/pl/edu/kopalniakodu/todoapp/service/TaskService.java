@@ -22,6 +22,10 @@ public class TaskService {
         this.scheduleRepository = scheduleRepository;
     }
 
+    public Task findById(Long id) {
+        return taskRepository.findById(id).get();
+    }
+
 
     public List<Task> findTasks(String plan) {
         return taskRepository.findAllTasksSortedByActiveAndTaskWeightAndCreationDate(plan);
