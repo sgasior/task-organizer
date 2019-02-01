@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.edu.kopalniakodu.todoapp.domain.Task;
-import pl.edu.kopalniakodu.todoapp.repository.ScheduleRepository;
-import pl.edu.kopalniakodu.todoapp.repository.TaskRepository;
 import pl.edu.kopalniakodu.todoapp.service.TaskService;
 
 import javax.validation.Valid;
@@ -27,16 +25,14 @@ public class TaskController {
     private TaskService taskService;
 
     @Autowired
-    public TaskController(TaskRepository taskRepository, ScheduleRepository scheduleRepository, TaskService taskService) {
+    public TaskController(TaskService taskService) {
         this.taskService = taskService;
     }
 
 
     // example url http://localhost:8080/?plan=abc
     @GetMapping(value = {
-            "{plan}",
-            "{plan}index.html",
-            "{plan}index", ""
+            "app{plan}",
     })
     public String taskList(@RequestParam(value = "plan") String plan, Model model) {
         model.addAttribute("tasks", taskService.findTasks(plan));
@@ -57,7 +53,7 @@ public class TaskController {
     public String doneTask(@RequestParam("taskId") Long id, @RequestParam("plan") String plan, RedirectAttributes redirectAttributes) {
         taskService.doneById(id);
         redirectAttributes.addAttribute("plan", plan);
-        return "redirect:/?plan={plan}";
+        return "redirect:/app?plan={plan}";
     }
 
 
@@ -65,7 +61,7 @@ public class TaskController {
     public String deleteTask(@RequestParam("taskId") Long id, @RequestParam("plan") String plan, RedirectAttributes redirectAttributes) {
         taskService.deleteById(id);
         redirectAttributes.addAttribute("plan", plan);
-        return "redirect:/?plan={plan}";
+        return "redirect:/app?plan={plan}";
     }
 
     @GetMapping("/add")
@@ -86,12 +82,12 @@ public class TaskController {
             // updateTaskQuery
             taskService.updateTask(task.getTitle(), task.getDescription(), task.getTaskWeight(), task.getId());
             redirectAttributes.addAttribute("plan", plan);
-            return "redirect:/?plan={plan}";
+            return "redirect:/app?plan={plan}";
         } else {
 
             taskService.createTask(task, plan);
             redirectAttributes.addAttribute("plan", plan);
-            return "redirect:/?plan={plan}";
+            return "redirect:/app?plan={plan}";
         }
 
     }
