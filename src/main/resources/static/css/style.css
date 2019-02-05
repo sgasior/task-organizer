@@ -22,15 +22,15 @@ body {
     transform: rotate(25deg)
 }
 
-.important .fa-thumbtack {
+.important{
     color: #cd4545;
 }
 
-.md-important .fa-thumbtack {
+.md-important {
     color: #fab95b;
 }
 
-.not-important .fa-thumbtack {
+.not-important{
     color: #587850;
 
 }

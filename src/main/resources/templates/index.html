@@ -20,11 +20,19 @@
 
                         <!--<th:block th:if="${task.taskWeight == task.taskWeight.IMPORTANT}">-->
 
-                        <i class="fas fa-thumbtack"></i>
 
+                        <th:block th:switch="${task.taskWeight.name()}">
+                            <div th:case="'IMPORTANT'">
+                                <i class="fas fa-thumbtack important"></i>
+                            </div>
+                            <div th:case="'MD_IMPORTANT'">
+                                <i class="fas fa-thumbtack md-important"></i>
+                            </div>
+                            <div th:case="'NOT_IMPORTANT'">
+                                <i class="fas fa-thumbtack not-important"></i>
+                            </div>
+                        </th:block>
 
-                        <!--<td th:style="${task.taskWeight == task.taskWeight.IMPORTANT ? 'color: yellow;' : 'color: blue;'}"-->
-                        <!--th:text="${task.taskWeight}"></td>-->
 
                         <div class="topic">
                             <i class="far fa-lightbulb"></i>
