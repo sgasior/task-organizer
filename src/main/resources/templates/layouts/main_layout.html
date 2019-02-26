@@ -48,8 +48,8 @@
             <ul class="navbar-nav">
                 <li class="nav-item"><a th:href="@{/add(plan=${plan})}" class="nav-link">Add Task</a></li>
                 <li class="nav-item"><a th:href="@{/history(plan=${plan})}" class="nav-link">Task History</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Export Tasks</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Import Tasks</a></li>
+                <li class="nav-item"><a th:href="@{/export(plan=${plan})}" class="nav-link">Export Tasks</a></li>
+                <li class="nav-item"><a th:href="@{/import(plan=${plan})}" class="nav-link">Import Tasks</a></li>
             </ul>
         </div>
     </nav>

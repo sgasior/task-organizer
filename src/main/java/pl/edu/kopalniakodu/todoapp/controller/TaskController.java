@@ -1,5 +1,6 @@
 package pl.edu.kopalniakodu.todoapp.controller;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,5 +102,23 @@ public class TaskController {
         return "editTask";
     }
 
+
+    //todo
+    @GetMapping("/import")
+    public String importTask(Model model, @RequestParam("plan") String plan, RedirectAttributes redirectAttributes) {
+
+
+        redirectAttributes.addAttribute("plan", plan);
+        return "redirect:/app?plan={plan}";
+    }
+
+    @GetMapping("/export")
+    public String exportTask(Model model, @RequestParam("plan") String plan, RedirectAttributes redirectAttributes) {
+        logger.info("Exporting: " + plan);
+        taskService.exportTask(plan);
+
+        redirectAttributes.addAttribute("plan", plan);
+        return "redirect:/app?plan={plan}";
+    }
 
 }

@@ -13,7 +13,7 @@ import java.util.List;
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
 
-    @Modifying
+    @Modifying(clearAutomatically = true)
     @Transactional
     @Query("DELETE FROM Task t WHERE t.id=:id")
     void deleteById(@Param("id") Long id);
@@ -35,4 +35,9 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
                     @Param("newTaskWeight") TaskWeight newTaskWeight,
                     @Param("id") Long id);
 
+
+    @Modifying
+    @Transactional
+    @Query("SELECT t FROM Task t WHERE t.schedule.plan=:plan ORDER BY t.taskWeight ,t.creationDate ASC")
+    List<Task> findAllTasksByPlan(@Param("plan") String plan);
 }

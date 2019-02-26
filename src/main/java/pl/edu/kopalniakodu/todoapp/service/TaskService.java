@@ -7,6 +7,7 @@ import pl.edu.kopalniakodu.todoapp.domain.Task;
 import pl.edu.kopalniakodu.todoapp.domain.TaskWeight;
 import pl.edu.kopalniakodu.todoapp.repository.ScheduleRepository;
 import pl.edu.kopalniakodu.todoapp.repository.TaskRepository;
+import pl.edu.kopalniakodu.todoapp.utill.ExportTasks;
 
 import java.util.List;
 
@@ -55,6 +56,13 @@ public class TaskService {
 
         task.setSchedule(scheduleRepository.findScheduleByPlan(plan));
         taskRepository.save(task);
+    }
+
+    public void exportTask(String plan) {
+        ExportTasks exportTasks = new ExportTasks();
+        //exportTasks.exportFile(taskRepository.findAllTasksSortedByActiveAndTaskWeightAndCreationDate(plan));
+        exportTasks.exportFile(taskRepository.findAllTasksByPlan(plan));
+
     }
 
 
