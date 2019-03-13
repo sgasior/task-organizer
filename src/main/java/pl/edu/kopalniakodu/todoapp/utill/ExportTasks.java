@@ -1,18 +1,17 @@
 package pl.edu.kopalniakodu.todoapp.utill;
 
+
+import org.apache.commons.math3.util.Pair;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.kopalniakodu.todoapp.domain.Task;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 
@@ -28,19 +27,10 @@ public class ExportTasks {
 
     }
 
-    public void exportFile(List<Task> taskList) {
-        logger.info("Exporting (in exportFile(..)");
+    public Pair<String, Workbook> exportFile(List<Task> taskList) {
         generateExcelWorkBook(taskList);
-
-        try {
-            FileOutputStream out = new FileOutputStream(new File(generateFileName()));
-            wb.write(out);
-            out.close();
-            logger.info("createworkbook written successfully");
-        } catch (java.io.IOException e) {
-            e.printStackTrace();
-        }
-
+        Pair<String, Workbook> pair = new Pair<>(generateFileName(), wb);
+        return pair;
     }
 
 
@@ -186,7 +176,6 @@ public class ExportTasks {
 
     private String generateFileName() {
         String fileName = LocalDate.now().toString() + "_" + LocalDateTime.now().getHour() + "_" + LocalDateTime.now().getMinute() + ".xls";
-        logger.info("fileName: " + fileName);
         return fileName;
     }
 
@@ -202,20 +191,5 @@ public class ExportTasks {
         this.sheetList = sheetList;
     }
 
-    private void autoSizeColumns(Workbook workbook) {
-        int numberOfSheets = workbook.getNumberOfSheets();
-        for (int i = 0; i < numberOfSheets; i++) {
-            Sheet sheet = workbook.getSheetAt(i);
-            if (sheet.getPhysicalNumberOfRows() > 0) {
-                Row row = sheet.getRow(sheet.getFirstRowNum());
-                Iterator<Cell> cellIterator = row.cellIterator();
-                while (cellIterator.hasNext()) {
-                    Cell cell = cellIterator.next();
-                    int columnIndex = cell.getColumnIndex();
-                    sheet.autoSizeColumn(columnIndex);
-                }
-            }
-        }
-    }
 
 }

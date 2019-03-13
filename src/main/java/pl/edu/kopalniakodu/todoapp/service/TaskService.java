@@ -1,6 +1,8 @@
 package pl.edu.kopalniakodu.todoapp.service;
 
 
+import org.apache.commons.math3.util.Pair;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.edu.kopalniakodu.todoapp.domain.Task;
@@ -58,10 +60,9 @@ public class TaskService {
         taskRepository.save(task);
     }
 
-    public void exportTask(String plan) {
+    public Pair<String, Workbook> exportTask(String plan) {
         ExportTasks exportTasks = new ExportTasks();
-        //exportTasks.exportFile(taskRepository.findAllTasksSortedByActiveAndTaskWeightAndCreationDate(plan));
-        exportTasks.exportFile(taskRepository.findAllTasksByPlan(plan));
+        return exportTasks.exportFile(taskRepository.findAllTasksByPlan(plan));
 
     }
 

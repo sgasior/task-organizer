@@ -1,6 +1,8 @@
 package pl.edu.kopalniakodu.todoapp.controller;
 
 
+import org.apache.commons.math3.util.Pair;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +17,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.edu.kopalniakodu.todoapp.domain.Task;
 import pl.edu.kopalniakodu.todoapp.service.TaskService;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
+import java.io.OutputStream;
 
 @Controller()
 @SessionAttributes("task")
@@ -113,12 +118,29 @@ public class TaskController {
     }
 
     @GetMapping("/export")
-    public String exportTask(Model model, @RequestParam("plan") String plan, RedirectAttributes redirectAttributes) {
+    public void exportTask(Model model, @RequestParam("plan") String plan, HttpServletResponse response, RedirectAttributes redirectAttributes) {
         logger.info("Exporting: " + plan);
-        taskService.exportTask(plan);
 
-        redirectAttributes.addAttribute("plan", plan);
-        return "redirect:/app?plan={plan}";
+
+        Pair<String, Workbook> pair = taskService.exportTask(plan);
+
+        String fileName = pair.getFirst();
+        Workbook wb = pair.getSecond();
+
+        response.setContentType("application/vnd.ms-excel");
+        response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
+
+        OutputStream out = null;
+        try {
+            out = response.getOutputStream();
+            wb.write(out);
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 }
