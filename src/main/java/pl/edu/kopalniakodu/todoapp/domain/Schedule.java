@@ -3,7 +3,7 @@ package pl.edu.kopalniakodu.todoapp.domain;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import pl.edu.kopalniakodu.todoapp.utill.RandomURLGeneratorImpl;
+import pl.edu.kopalniakodu.todoapp.service.impl.utill.RandomURLGeneratorImpl;
 
 import javax.persistence.*;
 import java.util.HashSet;

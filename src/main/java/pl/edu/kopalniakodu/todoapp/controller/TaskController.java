@@ -5,7 +5,6 @@ import org.apache.commons.math3.util.Pair;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,7 +21,7 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.io.OutputStream;
 
-@Controller()
+@Controller
 @SessionAttributes("task")
 public class TaskController {
 
@@ -30,7 +29,6 @@ public class TaskController {
 
     private TaskService taskService;
 
-    @Autowired
     public TaskController(TaskService taskService) {
         this.taskService = taskService;
     }

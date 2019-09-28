@@ -1,6 +1,5 @@
 package pl.edu.kopalniakodu.todoapp.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +13,6 @@ public class MainPageController {
 
     private ScheduleService scheduleService;
 
-    @Autowired
     public MainPageController(ScheduleService scheduleService) {
         this.scheduleService = scheduleService;
     }

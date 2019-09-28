@@ -1,4 +1,4 @@
-package pl.edu.kopalniakodu.todoapp.utill;
+package pl.edu.kopalniakodu.todoapp.service.impl.utill;
 
 import java.util.Random;
 
