@@ -27,7 +27,7 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 
 
     //@Query("update Task t set t.title = ?1, t.description= ?2 where t.id = ?3")
-    @Modifying
+    @Modifying(clearAutomatically = true)
     @Transactional
     @Query("update Task t set t.title=:newTitle, t.description=:newDescription, t.taskWeight=:newTaskWeight WHERE t.id= :id")
     void updateTask(@Param("newTitle") String newTitle,
