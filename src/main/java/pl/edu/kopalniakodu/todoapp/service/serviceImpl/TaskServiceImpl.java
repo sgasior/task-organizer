@@ -1,4 +1,4 @@
-package pl.edu.kopalniakodu.todoapp.service.impl;
+package pl.edu.kopalniakodu.todoapp.service.serviceImpl;
 
 
 import org.apache.commons.math3.util.Pair;
@@ -10,7 +10,7 @@ import pl.edu.kopalniakodu.todoapp.domain.TaskWeight;
 import pl.edu.kopalniakodu.todoapp.repository.ScheduleRepository;
 import pl.edu.kopalniakodu.todoapp.repository.TaskRepository;
 import pl.edu.kopalniakodu.todoapp.service.TaskService;
-import pl.edu.kopalniakodu.todoapp.service.impl.utill.ExportTasks;
+import pl.edu.kopalniakodu.todoapp.service.utill.ExportTasks;
 
 import java.util.List;
 

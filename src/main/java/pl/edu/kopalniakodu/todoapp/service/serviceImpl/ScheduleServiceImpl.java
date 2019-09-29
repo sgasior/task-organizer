@@ -1,4 +1,4 @@
-package pl.edu.kopalniakodu.todoapp.service.impl;
+package pl.edu.kopalniakodu.todoapp.service.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
