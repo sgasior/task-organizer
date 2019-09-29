@@ -1,19 +1,15 @@
-package pl.edu.kopalniakodu.todoapp.service;
+package pl.edu.kopalniakodu.todoapp.service.serviceImpl;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.junit4.SpringRunner;
 import pl.edu.kopalniakodu.todoapp.domain.Schedule;
 import pl.edu.kopalniakodu.todoapp.domain.Task;
 import pl.edu.kopalniakodu.todoapp.domain.TaskWeight;
 import pl.edu.kopalniakodu.todoapp.repository.ScheduleRepository;
 import pl.edu.kopalniakodu.todoapp.repository.TaskRepository;
-import pl.edu.kopalniakodu.todoapp.service.serviceImpl.TaskServiceImpl;
 
 import java.util.Optional;
 
@@ -21,12 +17,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-@RunWith(SpringRunner.class)
-@DataJpaTest
 public class TaskServiceImplTest {
 
     TaskServiceImpl taskService;
-
 
     @Mock
     TaskRepository taskRepository;

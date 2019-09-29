@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class ScheduleRepositoryTest {
+public class ScheduleRepositoryIT {
 
     @Autowired
     private TestEntityManager entityManager;

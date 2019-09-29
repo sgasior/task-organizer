@@ -3,7 +3,6 @@ package pl.edu.kopalniakodu.todoapp.domain;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import pl.edu.kopalniakodu.todoapp.service.utill.RandomURLGeneratorImpl;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -30,11 +29,6 @@ public class Schedule extends Auditable {
 
         //for dev purpose
 //        this.plan = "abc";
-    }
-
-
-    public void generateRandomPlan() {
-        this.plan = RandomURLGeneratorImpl.generateRandomUrl() + this.getId();
     }
 
 }

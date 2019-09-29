@@ -8,6 +8,7 @@ import pl.edu.kopalniakodu.todoapp.domain.TaskWeight;
 import pl.edu.kopalniakodu.todoapp.repository.ScheduleRepository;
 import pl.edu.kopalniakodu.todoapp.repository.TaskRepository;
 import pl.edu.kopalniakodu.todoapp.service.ScheduleService;
+import pl.edu.kopalniakodu.todoapp.service.utill.RandomURLGeneratorImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,10 +27,10 @@ public class ScheduleServiceImpl implements ScheduleService {
 
 
     public void save(Schedule schedule) {
-
+        //this is saved because to generate random plan schedule must have generated Id
         scheduleRepository.save(schedule);
-        schedule.generateRandomPlan();
 
+        schedule.setPlan(RandomURLGeneratorImpl.generateRandomUrl() + schedule.getId());
 
         // *** EXAMPLE DATA INIT ***
         List<Task> taskList = new ArrayList<>();
@@ -56,4 +57,6 @@ public class ScheduleServiceImpl implements ScheduleService {
 
 
     }
+
+
 }
