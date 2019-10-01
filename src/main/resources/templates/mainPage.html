@@ -8,7 +8,7 @@
     <title th:text="${title}">Title goes here</title>
     <link rel="shortcut icon" th:href="@{/images/favicon.ico}"/>
     <!--HREFS USING TH-->
-    <link rel="stylesheet" th:href="@{/libs/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.css"/>
     <link rel="stylesheet" th:href="@{/css/mainPage.css}">
 
 
@@ -22,15 +22,9 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
+    <script src="/webjars/jquery/3.0.0/jquery.min.js"></script>
+    <script src="/webjars/popper.js/1.14.3/popper.min.js"></script>
+    <script src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -71,7 +65,7 @@
                     </form>
                     <form style="display:inline" method="GET" action="#features">
                         <button type="submit" class="btn btn-lg btn-dark btn-about-app ">
-                            <i class="fas fa-info-circle"></i>  About app
+                            <i class="fas fa-info-circle"></i> About app
                         </button>
                     </form>
                 </div>
@@ -89,7 +83,8 @@
                 <div class="card " style="width: 18rem; ">
                     <img th:src="@{/images/new_task_card.png}" class="card-img-top " alt="... ">
                     <div class="card-body ">
-                        <p class="card-text ">You can <strong>ADD</strong> new task by planning your whole day! It is realy
+                        <p class="card-text ">You can <strong>ADD</strong> new task by planning your whole day! It is
+                            realy
                             simple!</p>
                     </div>
                 </div>
